@@ -1,87 +1,88 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Imagem Flutter',
+      title: 'Flutter Demo',
       theme: ThemeData(
-        useMaterial3: true,
-      ),
-      home: MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  bool isTextVisible = false;
-
-  void _toggleTextVisibility() {
-    setState(() {
-      isTextVisible = !isTextVisible;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Meu App',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
+        colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: Colors.blue,
         ),
-        backgroundColor: Colors.lightBlue,
-        centerTitle: true,
       ),
-      body: Column(
-        children: <Widget>[
-          SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: _toggleTextVisibility,
-            child: Text(
-              'Clique para proseguir',
-              style: TextStyle(
-                color: Colors.blue,
-              ),
-            ),
-          ),
-          Image.network(
-            'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
-            width: 650,
-            height: 450,
-            fit: BoxFit.cover,
-          ),
-          if (isTextVisible)
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                color: Colors.white,
-                padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  'Este é o Mascote do Flutter',
-                  style: TextStyle(
-                    color: Colors.lightBlue,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('MEU APP'),
+        ),
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              const UserAccountsDrawerHeader(
+                accountName: Text('Willian Silvestre'),
+                accountEmail: Text('willian@gmail.com'),
+                currentAccountPicture: CircleAvatar(
+                  backgroundColor: Color(0xff0b5ca0),
+                  child: Text('W.S', style: TextStyle(color: Colors.white)),
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.blue,
                 ),
               ),
-            ),
-        ],
+              const ListTile(
+                leading: Icon(Icons.article_outlined),
+                title: Text('Curso de Flutter'),
+                onTap: _launchFlutterCourse,
+              ),
+              const ListTile(
+                leading: Icon(Icons.article_outlined),
+                title: Text('Curso de PHP'),
+                onTap: _launchPHPCourse,
+              ),
+              const ListTile(
+                leading: Icon(Icons.article_outlined),
+                title: Text('Curso de Java'),
+                onTap: _launchJavaCourse,
+              ),
+            ],
+          ),
+        ),
       ),
     );
+  }
+}
+
+Future<void> _launchFlutterCourse() async {
+  const url = 'https://youtu.be/XeUiJJN0vsE?si=yFuBUF2Tu3nwEo6x';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Não foi possível abrir o link: $url';
+  }
+}
+
+Future<void> _launchPHPCourse() async {
+  const url = 'https://youtu.be/TfsO0BGvGn0?si=3wk6ad4yIBsdqKip';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Não foi possível abrir o link: $url';
+  }
+}
+
+Future<void> _launchJavaCourse() async {
+  const url = 'https://youtu.be/sTX0UEplF54?si=rJSrJkb8vpcSTxfE';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Não foi possível abrir o link: $url';
   }
 }
