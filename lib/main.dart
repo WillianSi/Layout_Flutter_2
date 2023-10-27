@@ -1,86 +1,48 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Imagem Flutter',
+      title: 'Recriação de interface',
       theme: ThemeData(
-        useMaterial3: true,
+        scaffoldBackgroundColor: Color.fromARGB(255, 227, 201, 201),
+        appBarTheme: AppBarTheme(
+          backgroundColor: Color(0xFFEF9A9A),
+        ),
       ),
-      home: MyHomePage(),
+      home: const MyHomePage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  bool isTextVisible = false;
-
-  void _toggleTextVisibility() {
-    setState(() {
-      isTextVisible = !isTextVisible;
-    });
-  }
-
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Meu App',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
-        backgroundColor: Colors.lightBlue,
+        title: Text('MEU APP'),
         centerTitle: true,
       ),
-      body: Column(
-        children: <Widget>[
-          SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: _toggleTextVisibility,
-            child: Text(
-              'Clique para proseguir',
-              style: TextStyle(
-                color: Colors.blue,
-              ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Text(
+              'Corpo do texto',
             ),
-          ),
-          Image.network(
-            'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
-            width: 650,
-            height: 450,
-            fit: BoxFit.cover,
-          ),
-          if (isTextVisible)
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                color: Colors.white,
-                padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  'Este é o Mascote do Flutter',
-                  style: TextStyle(
-                    color: Colors.lightBlue,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-        ],
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Color(0xFFEF9A9A),
+        child: const Icon(Icons.add),
       ),
     );
   }
