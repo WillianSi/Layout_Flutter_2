@@ -1,48 +1,35 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Recriação de interface',
-      theme: ThemeData(
-        scaffoldBackgroundColor: Color.fromARGB(255, 227, 201, 201),
-        appBarTheme: AppBarTheme(
-          backgroundColor: Color(0xFFEF9A9A),
+      title: 'Imagem de coruja',
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('MEU APP'),
+          backgroundColor: Colors.blue,
         ),
-      ),
-      home: const MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('MEU APP'),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'Corpo do texto',
+        body: Container(
+          color: const Color(0xffadd9df),
+          child: Center(
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.green, width: 4.0),
+              ),
+              child: Image.network(
+                'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg',
+                width: 190,
+                height: 190,
+              ),
             ),
-          ],
+          ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: Color(0xFFEF9A9A),
-        child: const Icon(Icons.add),
       ),
     );
   }
