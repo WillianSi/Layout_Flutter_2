@@ -9,26 +9,37 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Imagem de coruja',
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('MEU APP'),
+          title: Text('Meu App'),
           backgroundColor: Colors.blue,
         ),
-        body: Container(
-          color: const Color(0xffadd9df),
-          child: Center(
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.green, width: 4.0),
-              ),
-              child: Image.network(
-                'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg',
-                width: 190,
-                height: 190,
+        body: Stack(
+          children: <Widget>[
+            Image.network(
+              'https://i.imgur.com/fzgwYzq.png',
+              width: double.infinity,
+              height: double.infinity,
+              fit: BoxFit.cover,
+            ),
+            Positioned(
+              top: AppBar().preferredSize.height,
+              left: 0,
+              right: 0,
+              child: Center(
+                child: ElevatedButton(
+                  onPressed: () {},
+                  child: Text('Clique para Prosseguir'),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.blue,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                  ),
+                ),
               ),
             ),
-          ),
+          ],
         ),
       ),
     );
